@@ -1,0 +1,40 @@
+.contacts {
+    width: 40%;
+    
+    & > .heading-2 {
+        color: $color-primary;
+        text-align: left;
+    }
+
+
+    &__block {
+        margin-top: 2rem;
+
+        & > .heading-3 {
+            color: $color-grey-dark;
+        }
+    }
+
+    &__icon-box {
+        display: flex;
+    }
+
+    &__link {
+
+        &:not(:last-child) {
+            margin-right: 2rem;
+        }
+    }
+
+    &__icon {
+        fill: $color-primary;
+        width: 5rem;
+        height: 5rem;
+        transition: all .3s;
+        
+
+        &:hover {
+            fill: orangered;
+        }
+    }
+}

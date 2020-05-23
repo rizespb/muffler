@@ -1,0 +1,161 @@
+.book-form {
+    padding: 1rem 5rem;
+
+    & > .heading-2 {
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    @media only screen and (max-height: 31.25em) { // на невысоких экранах распалагаем поля формы по две в ряд
+        display: grid;
+        grid-template-columns: repeat(2, minmax(20rem, 1fr));
+        grid-gap: 1rem;
+        //grid-auto-rows: 1fr;
+
+        justify-content: center;
+
+        & > .heading-2 {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        #submit {
+            grid-column: 1 / -1;
+            justify-self: center;
+        }
+
+    }
+
+    &__group {
+        margin-bottom: 0.5rem;
+
+        &--choice {
+            display: flex;
+            margin-bottom: 3rem;
+
+            @media only screen and (max-height: 31.25em) {
+                grid-column: 1 / -1;
+                justify-self: center;
+            }
+        }
+    }
+
+    &__input {
+        outline: none;
+        border: none;
+        border-bottom: 3px solid transparent; // чтобы при появлении нижней границы (при фокусе) высота блока не изменялась и следующие за ним блоки не сдвигались
+        box-shadow: $shadow-input;
+        
+        font-family: inherit;
+        color: $color-grey-dark;
+        font-size: inherit;
+        padding: 0.5rem 2rem;
+
+        width: 100%;
+        max-width: 50rem;
+
+        
+
+        &:focus {
+            border-bottom: 3px solid $color-valid;
+        }
+
+        &:focus:invalid {
+            border-bottom: 3px solid $color-invalid;
+        }
+
+        &::placeholder {
+            color: $color-grey-dark;
+        }
+
+        &:focus::placeholder {
+            visibility: hidden;
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 1.4rem;
+        opacity: 0;
+        visibility: hidden;
+
+        padding-left: 2rem;
+
+        transform: translateY(-2rem);
+
+        transition: all .5s;
+    }
+
+    &__input:focus + &__label {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+    &__radio-group {
+        display: flex;
+        align-items: center;
+        
+        &:not(:last-child) {
+            margin-right: 7rem;
+        }
+
+    }
+
+    &__radio {
+        display: none;        
+    }
+
+    &__radio-label {
+        display: flex;
+        align-items: center;
+        color: $color-grey-dark;
+        font-size: 2rem;
+        font-family: $font-display;
+        cursor: pointer;
+    }
+
+    &__radio-btn {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        margin-right: 1.5rem;
+        
+        
+        position: relative;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            border-radius: 50%;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity: 0;
+
+            transition: opacity .3s;
+        }
+    }
+
+            
+    &__radio:checked + &__radio-label  &__radio-btn::after {
+            opacity: 1;
+    }
+
+    &__submit {
+        background-color: $color-primary;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: $color-white;
+        text-transform: uppercase;
+    }
+
+}
